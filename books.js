@@ -38,11 +38,11 @@ const mockBooks = [
     },
     {
         id: 4,
-        title: "https://polka.academy/articles/627",
-        author: "Федор Достоевский",
-        genres: ["Детективный роман", "Социальный роман"],
-        description: "Преступление и наказание одно из самых значительных произведений в истории мировой литературы. Это и глубокий филососфский роман, и тонкая психологическая драма, и захватывающий детектив, и величественная картина мрачного города, в недрах которого герои грешат и ищут прощения, жертвуют собой и отрекаются от себя ради ближних и находят успокоение в смирении, покаянии, вере. Главный герой романа Родион Раскольников решается на убийство, чтобы доказать себе и миру, что он не «тварь дрожащая», а «право имеет». Главным предметом исследования писателя становится процесс превращения добропорядочного, умного и доброго юноши в убийцу, а также то, как совершивший преступление Раскольников может искупить свою вину.",
-        cover: "https://cdn1.ozone.ru/s3/multimedia-v/c600/6676475791.jpg",
+        title: "Новая книга 2023",
+        author: "Современный автор",
+        genres: ["Фантастика", "Новинка"],
+        description: "Свежая книга от современного автора, только что вышедшая в этом году.",
+        cover: "https://via.placeholder.com/300x450?text=Новая+книга",
         rating: 4.5,
         reviewsCount: 32,
         isNew: true,
@@ -165,7 +165,6 @@ function loadBooks(filter, containerId) {
 }
 
 // Загрузка данных книги
-// Загрузка данных книги
 // В функции loadBookData добавим проверку на наличие обзора
 function loadBookData(bookId) {
     const book = mockBooks.find(b => b.id === parseInt(bookId));
@@ -209,34 +208,6 @@ function loadBookData(bookId) {
         reviewLink.textContent = 'Читать обзор "Мастер и Маргарита"';
     } else {
         reviewContainer.style.display = 'none';
-    } else if (bookId === '3') { // Три товарища
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://dtf.ru/read/1854825-mikro-obzor-tri-tovarisha-erih-mariya-remark-1936';
-        reviewLink.textContent = 'Читать обзор "Три товарища"';
-    } else if (bookId === '4') { // Преступление и наказание
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://polka.academy/articles/627';
-        reviewLink.textContent = 'Читать обзор "Преступление и наказание"';
-    } } else if (bookId === '5') { // Американский психопат
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://dzen.ru/a/ZEAyk4R20kdF9yBx';
-        reviewLink.textContent = 'Читать обзор "Американский психопат"';
-    } else if (bookId === '6') { // Американский психопат
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://dzen.ru/a/ZEAyk4R20kdF9yBx';
-        reviewLink.textContent = 'Читать обзор "Американский психопат"';
-    } else if (bookId === '7') { // Кристина
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://pikabu.ru/story/stiven_king_kristina_1983_6361536?ysclid=ma00rn90eo5996718';
-        reviewLink.textContent = 'Читать обзор "Кристина"';
-    } else if (bookId === '8') { // Игра престолов
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://author.today/post/441088';
-        reviewLink.textContent = 'Читать обзор "Игра престолов"';
-    } else if (bookId === '9') { // Атака титанов
-        reviewContainer.style.display = 'block';
-        reviewLink.href = 'https://irecommend.ru/content/ochen-krutaya-yaponskaya-postapokalipticheskaya-manga-napisannaya-i-illyustrirovannaya-khadz';
-        reviewLink.textContent = 'Читать обзор "Атака титанов"';
     }
 }
 
