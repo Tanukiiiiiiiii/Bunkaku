@@ -151,15 +151,19 @@ footer {
 }
 
 .search {
+    background-color: var(--light-color);
     display: flex;
     gap: 10px;
+    color: #e0e0e0;
 }
 
 .search input {
+    background-color: var(--light-color);
     padding: 10px;
     border: 1px solid var(--gray-color);
     border-radius: 5px;
     width: 300px;
+    color: #e0e0e0;
 }
 
 .tabs {
@@ -176,7 +180,7 @@ footer {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: var(--dark-gray);
+    color: var(--primary-color);
     position: relative;
 }
 
