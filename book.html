@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunkaku - Название книги</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">Bunkaku</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="account.html">Личный кабинет</a></li>
+                <li><a href="login.html" id="auth-link">Войти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container book-page">
+    <div class="book-header">
+        <div class="book-cover">
+            <img src="https://via.placeholder.com/300x450" alt="Обложка книги" id="book-cover">
+        </div>
+        <div class="book-info">
+            <h1 id="book-title">Название книги</h1>
+            <p class="author" id="book-author">Автор книги</p>
+            <div class="genres" id="book-genres">
+                <span>Жанр 1</span>
+                <span>Жанр 2</span>
+            </div>
+            <div class="actions">
+                <button class="btn" id="add-to-reading">Читаю</button>
+                <button class="btn" id="add-to-planned">В планах</button>
+                <button class="btn" id="add-to-read">Прочитано</button>
+            </div>
+            <div class="rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-value">4.5</span>
+                <span class="reviews-count">(123 отзыва)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="book-details">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="description">Описание</button>
+            <button class="tab-btn" data-tab="reviews">Отзывы</button>
+            <button class="tab-btn" data-tab="reviews">Рецензии</button>
+        </div>
+
+        <div class="tab-content active" id="description">
+            <h3>О книге</h3>
+            <p id="book-description">Здесь будет подробное описание книги. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const bookId = new URLSearchParams(window.location.search).get('id');
+                loadBookData(bookId);
+
+                // Проверяем, есть ли книга на полках пользователя
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    checkBookOnShelves(bookId);
+                }
+
+                // Обработчики для кнопок добавления на полки
+                document.querySelectorAll('.shelf-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const shelfType = this.getAttribute('data-shelf');
+                        addBookToShelf(bookId, shelfType);
+
+                        // Обновляем статус после добавления
+                        checkBookOnShelves(bookId);
+                    });
+                });
+            });
+
+            // Функция проверки, на каких полках находится книга
+            function checkBookOnShelves(bookId) {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (!user) return;
+
+                const statusElement = document.getElementById('shelf-status');
+                statusElement.textContent = '';
+
+                // Проверяем все полки
+                for (const shelf in user.shelves) {
+                    const isOnShelf = user.shelves[shelf].some(b => b.id === parseInt(bookId));
+                    if (isOnShelf) {
+                        statusElement.textContent = `Книга в разделе: ${getShelfName(shelf)}`;
+                        statusElement.style.color = 'var(--primary-color)';
+                        statusElement.style.marginLeft = '15px';
+
+                        // Подсвечиваем активную кнопку
+                        document.querySelector(`.shelf-btn[data-shelf="${shelf}"]`).classList.add('active-shelf');
+                    } else {
+                        document.querySelector(`.shelf-btn[data-shelf="${shelf}"]`).classList.remove('active-shelf');
+                    }
+                }
+            }
+        </script>
+        <div class="tab-content" id="reviews">
+            <h3>Отзывы читателей</h3>
+            <div class="reviews-list" id="reviews-list">
+                <!-- Отзывы будут загружены через JS -->
+            </div>
+            <div class="add-review">
+                <h4>Оставить отзыв</h4>
+                <textarea placeholder="Ваш отзыв" id="review-text"></textarea>
+                <div class="rating-input">
+                    <span>Оценка:</span>
+                    <select id="review-rating">
+                        <option value="5">5 ★</option>
+                        <option value="4">4 ★</option>
+                        <option value="3">3 ★</option>
+                        <option value="2">2 ★</option>
+                        <option value="1">1 ★</option>
+                    </select>
+                </div>
+                <button class="btn" id="submit-review">Отправить</button>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- ... предыдущий код ... -->
+
+<footer>
+    <div class="container">
+        <p>&copy; 2023 Bunkaku. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="auth.js"></script>
+<script src="books.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Загрузка данных книги (в реальном приложении это будет запрос к API)
+        const bookId = new URLSearchParams(window.location.search).get('id');
+        loadBookData(bookId);
+
+        // Обработка переключения вкладок
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+
+                // Убираем активный класс у всех кнопок и контента
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Добавляем активный класс текущей кнопке и соответствующему контенту
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Обработка добавления книги в списки
+        document.getElementById('add-to-reading').addEventListener('click', function() {
+            addBookToShelf(bookId, 'reading');
+        });
+
+        document.getElementById('add-to-planned').addEventListener('click', function() {
+            addBookToShelf(bookId, 'planned');
+        });
+
+        document.getElementById('add-to-read').addEventListener('click', function() {
+            addBookToShelf(bookId, 'read');
+        });
+
+        // Обработка отправки отзыва
+        document.getElementById('submit-review').addEventListener('click', function() {
+            const text = document.getElementById('review-text').value;
+            const rating = document.getElementById('review-rating').value;
+
+            if (text.trim() === '') {
+                alert('Пожалуйста, напишите отзыв');
+                return;
+            }
+
+            submitReview(bookId, text, rating);
+        });
+    });
+</script>
+</body>
+</html>

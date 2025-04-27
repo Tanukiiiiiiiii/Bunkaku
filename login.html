@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunkaku - Вход</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">Bunkaku</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="account.html">Личный кабинет</a></li>
+                <li><a href="login.html" class="active" id="auth-link">Войти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="auth-page">
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Вход в Bunkaku</h2>
+        </div>
+
+        <div class="auth-form">
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" placeholder="Ваш email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Пароль</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Ваш пароль" required>
+                </div>
+
+                <button type="submit" class="auth-btn">Войти</button>
+
+                <div class="divider">или</div>
+
+                <div class="social-auth">
+                    <a href="vk.com" class="social-btn">G</a>
+                    <a href="vk.com" class="social-btn">F</a>
+                    <a href="vk.com" class="social-btn">VK</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            <p>Ещё нет аккаунта? <a href="register.html" class="auth-link">Зарегистрироваться</a></p>
+            <p><a href="register.html" class="auth-link">Забыли пароль?</a></p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Bunkaku. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

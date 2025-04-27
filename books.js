@@ -1,0 +1,334 @@
+// Моковые данные книг
+const mockBooks = [
+    {
+        id: 1,
+        title: "1984",
+        author: "Джордж Оруэлл",
+        genres: ["Антиутопия", "Классика"],
+        description: "Роман-антиутопия, описывающий тоталитарное общество, где правительство контролирует каждый аспект жизни людей.",
+        cover: "https://via.placeholder.com/300x450?text=1984",
+        rating: 4.7,
+        reviewsCount: 128,
+        isNew: false,
+        isPopular: true
+    },
+    {
+        id: 2,
+        title: "Мастер и Маргарита",
+        author: "Михаил Булгаков",
+        genres: ["Классика", "Мистика"],
+        description: "Философский роман, сочетающий в себе элементы сатиры, фантастики и мистики.",
+        cover: "https://via.placeholder.com/300x450?text=Мастер+и+Маргарита",
+        rating: 4.9,
+        reviewsCount: 215,
+        isNew: false,
+        isPopular: true
+    },
+    {
+        id: 3,
+        title: "Три товарища",
+        author: "Эрих Мария Ремарк",
+        genres: ["Классика", "Роман"],
+        description: "История о дружбе и любви на фоне послевоенной Германии.",
+        cover: "https://via.placeholder.com/300x450?text=Три+товарища",
+        rating: 4.8,
+        reviewsCount: 176,
+        isNew: false,
+        isPopular: true
+    },
+    {
+        id: 4,
+        title: "Новая книга 2023",
+        author: "Современный автор",
+        genres: ["Фантастика", "Новинка"],
+        description: "Свежая книга от современного автора, только что вышедшая в этом году.",
+        cover: "https://via.placeholder.com/300x450?text=Новая+книга",
+        rating: 4.5,
+        reviewsCount: 32,
+        isNew: true,
+        isPopular: false
+    },
+    {
+        id: 5,
+        title: "Еще одна новинка",
+        author: "Другой автор",
+        genres: ["Детектив", "Новинка"],
+        description: "Захватывающий детектив с неожиданной развязкой.",
+        cover: "https://via.placeholder.com/300x450?text=Новый+детектив",
+        rating: 4.3,
+        reviewsCount: 28,
+        isNew: true,
+        isPopular: false
+    },
+    {
+        id: 6,
+        title: "Американский психопат",
+        author: "Брет Истон Эллис",
+        genres: ["Триллер", "Психологический роман", "Криминал"],
+        description: "Шокирующая история Патрика Бейтмена - успешного нью-йоркского бизнесмена днем и безжалостного маньяка ночью. Роман исследует тему потребительского общества и человеческой идентичности.",
+        cover: "https://cv6.litres.ru/pub/c/elektronnaya-kniga/cover_415/66203385-bret-iston-ellis-amerikanskiy-psihopat.jpg",
+        rating: 4.6,
+        reviewsCount: 89,
+        isNew: true,
+        isPopular: true
+    },
+    {
+        id: 7,
+        title: "Кристина",
+        author: "Стивен Кинг",
+        genres: ["Ужасы", "Мистика"],
+        description: "История о демоническом автомобиле Plymouth Fury 1958 года выпуска, который оказывает роковое влияние на своего владельца. Классика хоррора от мастера жанра.",
+        cover: "https://cv5.litres.ru/pub/c/elektronnaya-kniga/cover_415/168466-stiven-king-kristina.jpg",
+        rating: 4.8,
+        reviewsCount: 145,
+        isNew: false,
+        isPopular: true
+    },
+    {
+        id: 8,
+        title: "Игра престолов",
+        author: "Джордж Р.Р. Мартин",
+        genres: ["Фэнтези", "Политические интриги"],
+        description: "Первая книга эпопеи 'Песнь Льда и Пламени'. Борьба за Железный Трон Семи Королевств, где победа часто оказывается хуже поражения.",
+        cover: "https://cv0.litres.ru/pub/c/elektronnaya-kniga/cover_415/10493666-dzhordzh-martin-igra-prestolov.jpg",
+        rating: 4.9,
+        reviewsCount: 324,
+        isNew: false,
+        isPopular: true
+    },
+    {
+        id: 9,
+        title: "Атака титанов",
+        author: "Хадзимэ Исаяма",
+        genres: ["Манга", "Постапокалипсис", "Фэнтези"],
+        description: "Человечество живет в городах, окруженных огромными стенами, защищающими от титанов - гигантских существ, пожирающих людей. История Эрена Йегера и его друзей, вступивших в борьбу с титанами.",
+        cover: "https://cv4.litres.ru/pub/c/elektronnaya-kniga/cover_415/68910732-hadzime-isayama-ataka-titanov-tom-1.jpg",
+        rating: 4.7,
+        reviewsCount: 210,
+        isNew: true,
+        isPopular: true
+    }
+];
+
+// ... остальной код остается без изменений ...
+
+
+// Моковые отзывы
+const mockReviews = {
+    1: [
+        { id: 1, userId: 101, userName: "Читатель", rating: 5, text: "Отличная книга, перечитываю каждый год!", date: "2023-01-15" },
+        { id: 2, userId: 102, userName: "Книголюб", rating: 4, text: "Интересная антиутопия, но немного мрачновато.", date: "2023-02-20" }
+    ],
+    2: [
+        { id: 3, userId: 103, userName: "Литератор", rating: 5, text: "Шедевр мировой литературы!", date: "2023-03-10" }
+    ]
+};
+
+// Загрузка книг в каталог
+function loadBooks(filter, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    let books = [];
+
+    if (filter === 'popular') {
+        books = mockBooks.filter(book => book.isPopular);
+    } else if (filter === 'new') {
+        books = mockBooks.filter(book => book.isNew);
+    } else {
+        books = mockBooks;
+    }
+
+    container.innerHTML = books.map(book => `
+        <div class="book-card" data-id="${book.id}">
+            <div class="book-cover">
+                <img src="${book.cover}" alt="${book.title}">
+            </div>
+            <div class="book-info">
+                <h3>${book.title}</h3>
+                <p class="author">${book.author}</p>
+                <div class="rating">
+                    <div class="stars">${'★'.repeat(Math.round(book.rating))}${'☆'.repeat(5 - Math.round(book.rating))}</div>
+                    <span class="rating-value">${book.rating}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Добавляем обработчики клика на карточки книг
+    document.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const bookId = this.getAttribute('data-id');
+            window.location.href = `book.html?id=${bookId}`;
+        });
+    });
+}
+
+// Загрузка данных книги
+function loadBookData(bookId) {
+    const book = mockBooks.find(b => b.id === parseInt(bookId));
+    if (!book) {
+        window.location.href = 'catalog.html';
+        return;
+    }
+
+    document.title = `Bunkaku - ${book.title}`;
+    document.getElementById('book-title').textContent = book.title;
+    document.getElementById('book-author').textContent = book.author;
+    document.getElementById('book-cover').src = book.cover;
+    document.getElementById('book-description').textContent = book.description;
+
+    // Жанры
+    const genresContainer = document.getElementById('book-genres');
+    genresContainer.innerHTML = book.genres.map(genre =>
+        `<span>${genre}</span>`
+    ).join('');
+
+    // Рейтинг
+    document.querySelector('.rating .stars').textContent =
+        '★'.repeat(Math.round(book.rating)) + '☆'.repeat(5 - Math.round(book.rating));
+    document.querySelector('.rating-value').textContent = book.rating;
+    document.querySelector('.reviews-count').textContent = `(${book.reviewsCount} отзывов)`;
+
+    // Загрузка отзывов
+    loadReviews(bookId);
+}
+
+// Загрузка отзывов
+function loadReviews(bookId) {
+    const reviews = mockReviews[bookId] || [];
+    const container = document.getElementById('reviews-list');
+
+    if (container) {
+        container.innerHTML = reviews.map(review => `
+            <div class="review">
+                <div class="review-header">
+                    <span class="review-author">${review.userName}</span>
+                    <span class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                </div>
+                <p class="review-text">${review.text}</p>
+                <div class="review-date">${review.date}</div>
+            </div>
+        `).join('');
+    }
+}
+
+// Добавление книги на полку пользователя
+function addBookToShelf(bookId, shelfType) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) {
+        alert('Для добавления книги необходимо войти в систему');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const book = mockBooks.find(b => b.id === parseInt(bookId));
+    if (!book) return;
+
+    // Проверяем, есть ли уже книга на какой-либо полке
+    for (const shelf in user.shelves) {
+        const index = user.shelves[shelf].findIndex(b => b.id === book.id);
+        if (index !== -1) {
+            // Удаляем книгу с текущей полки
+            user.shelves[shelf].splice(index, 1);
+        }
+    }
+
+    // Добавляем книгу на выбранную полку
+    user.shelves[shelfType].push({
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        cover: book.cover,
+        addedDate: new Date().toLocaleDateString()
+    });
+
+    // Обновляем данные пользователя
+    updateUserData(user);
+
+    alert(`Книга "${book.title}" добавлена в "${getShelfName(shelfType)}"`);
+}
+
+// Получение читаемого названия полки
+function getShelfName(shelfType) {
+    const names = {
+        reading: 'Читаю',
+        planned: 'В планах',
+        read: 'Прочитано'
+    };
+    return names[shelfType] || shelfType;
+}
+
+// Отправка отзыва
+function submitReview(bookId, text, rating) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) {
+        alert('Для отправки отзыва необходимо войти в систему');
+        return;
+    }
+
+    const book = mockBooks.find(b => b.id === parseInt(bookId));
+    if (!book) return;
+
+    // В реальном приложении здесь был бы запрос к API
+    const newReview = {
+        id: Date.now(),
+        userId: user.id,
+        userName: user.username,
+        rating: parseInt(rating),
+        text,
+        date: new Date().toLocaleDateString('ru-RU')
+    };
+
+    // Добавляем отзыв в моковые данные
+    if (!mockReviews[bookId]) {
+        mockReviews[bookId] = [];
+    }
+    mockReviews[bookId].push(newReview);
+
+    // Обновляем счетчик отзывов
+    book.reviewsCount = (book.reviewsCount || 0) + 1;
+
+    // Обновляем отзывы на странице
+    loadReviews(bookId);
+
+    // Очищаем форму
+    document.getElementById('review-text').value = '';
+    document.getElementById('review-rating').value = '5';
+
+    alert('Спасибо за ваш отзыв!');
+}
+
+// Загрузка книг пользователя
+function loadUserBooks(shelfType, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) return;
+
+    const books = user.shelves[shelfType] || [];
+
+    container.innerHTML = books.length > 0
+        ? books.map(book => `
+            <div class="book-card" data-id="${book.id}">
+                <div class="book-cover">
+                    <img src="${book.cover}" alt="${book.title}">
+                </div>
+                <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <p class="author">${book.author}</p>
+                    <div class="added-date">Добавлено: ${book.addedDate}</div>
+                </div>
+            </div>
+        `).join('')
+        : `<p class="empty-shelf">На этой полке пока нет книг</p>`;
+
+    // Добавляем обработчики клика на карточки книг
+    document.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const bookId = this.getAttribute('data-id');
+            window.location.href = `book.html?id=${bookId}`;
+        });
+    });
+}

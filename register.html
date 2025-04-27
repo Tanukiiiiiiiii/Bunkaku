@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunkaku - Регистрация</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">Bunkaku</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="account.html">Личный кабинет</a></li>
+                <li><a href="login.html" id="auth-link">Войти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="auth-page">
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Регистрация в Bunkaku</h2>
+        </div>
+
+        <div class="auth-form">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Имя пользователя</label>
+                    <input type="text" id="register-username" class="form-control" placeholder="Придумайте имя" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-control" placeholder="Ваш email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-password">Пароль</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="Не менее 6 символов" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-confirm">Подтвердите пароль</label>
+                    <input type="password" id="register-confirm" class="form-control" placeholder="Повторите пароль" required>
+                </div>
+
+                <button type="submit" class="auth-btn">Создать аккаунт</button>
+
+                <div class="divider">или</div>
+
+                <div class="social-auth">
+                    <a href="index.html" class="social-btn">G</a>
+                    <a href="#" class="social-btn">F</a>
+                    <a href="#" class="social-btn">VK</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            <p>Уже есть аккаунт? <a href="login.html" class="auth-link">Войти</a></p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Bunkaku. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

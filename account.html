@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunkaku - Личный кабинет</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">Bunkaku</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="account.html" class="active">Личный кабинет</a></li>
+                <li><a href="login.html" id="auth-link">Войти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container account-page">
+    <h2>Личный кабинет</h2>
+
+    <div class="user-info">
+        <div class="avatar">
+            <img src="https://via.placeholder.com/150" alt="Аватар пользователя" id="user-avatar">
+            <button class="btn-edit">Изменить</button>
+        </div>
+        <div class="details">
+            <h3 id="username">Имя пользователя</h3>
+            <p id="user-email">email@example.com</p>
+            <p id="member-since">Участник с января 2023</p>
+        </div>
+    </div>
+
+    <!-- ... предыдущий код ... -->
+    <div class="user-shelves">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="reading">Читаю <span id="reading-count">0</span></button>
+            <button class="tab-btn" data-tab="planned">В планах <span id="planned-count">0</span></button>
+            <button class="tab-btn" data-tab="read">Прочитано <span id="read-count">0</span></button>
+        </div>
+
+        <!-- ... остальной код ... -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... предыдущий код ...
+
+            // Обновляем счетчики книг
+            updateShelvesCounters();
+        });
+
+        function updateShelvesCounters() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) return;
+
+            document.getElementById('reading-count').textContent = `(${user.shelves.reading.length})`;
+            document.getElementById('planned-count').textContent = `(${user.shelves.planned.length})`;
+            document.getElementById('read-count').textContent = `(${user.shelves.read.length})`;
+        }
+    </script>
+
+        <div class="tab-content active" id="reading">
+            <div class="books-grid" id="reading-books">
+                <!-- Книги из списка "Читаю" будут загружены через JS -->
+            </div>
+        </div>
+
+        <div class="tab-content" id="planned">
+            <div class="books-grid" id="planned-books">
+                <!-- Книги из списка "В планах" будут загружены через JS -->
+            </div>
+        </div>
+
+        <div class="tab-content" id="read">
+            <div class="books-grid" id="read-books">
+                <!-- Книги из списка "Прочитано" будут загружены через JS -->
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="main.js"></script>
+<script src="auth.js"></script>
+<script src="books.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Проверка авторизации
+        checkAuth();
+
+        // Загрузка данных пользователя
+        loadUserData();
+
+        // Загрузка книг пользователя
+        loadUserBooks('reading', 'reading-books');
+        loadUserBooks('planned', 'planned-books');
+        loadUserBooks('read', 'read-books');
+
+        // Обработка переключения вкладок
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+
+                // Убираем активный класс у всех кнопок и контента
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Добавляем активный класс текущей кнопке и соответствующему контенту
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    });
+</script>
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Bunkaku. Все права защищены.</p>
+    </div>
+</footer>
+
+</body>
+</html>
