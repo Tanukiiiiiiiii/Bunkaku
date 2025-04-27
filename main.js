@@ -29,7 +29,6 @@ function loadUserData() {
 
     if (user) {
         document.getElementById('username').textContent = user.username;
-        document.getElementById('user-email').textContent = user.email;
         document.getElementById('member-since').textContent = `Участник с ${user.joinDate}`;
     } else {
         window.location.href = 'login.html';
