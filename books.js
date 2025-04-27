@@ -6,7 +6,7 @@ const mockBooks = [
         author: "Джордж Оруэлл",
         genres: ["Антиутопия", "Классика"],
         description: "Роман-антиутопия, описывающий тоталитарное общество, где правительство контролирует каждый аспект жизни людей.",
-        cover: "https://via.placeholder.com/300x450?text=1984",
+        cover: "https://u.livelib.ru/album/1001320382/o/txizqy83/o-o.jpeg",
         rating: 4.7,
         reviewsCount: 128,
         isNew: false,
