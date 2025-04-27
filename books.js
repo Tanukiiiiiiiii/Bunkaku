@@ -238,10 +238,6 @@ function loadBookData(bookId) {
         reviewLink.href = 'https://irecommend.ru/content/ochen-krutaya-yaponskaya-postapokalipticheskaya-manga-napisannaya-i-illyustrirovannaya-khadz';
         reviewLink.textContent = 'Читать обзор "Атака титанов"';
     }
-    
-    else {
-        reviewContainer.style.display = 'none';
-    }
 }
 
 // Загрузка отзывов
