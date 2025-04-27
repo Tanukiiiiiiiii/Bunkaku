@@ -206,6 +206,26 @@ function loadBookData(bookId) {
         reviewContainer.style.display = 'block';
         reviewLink.href = 'https://polka.academy/articles/553?fbclid=IwAR0WMlDH2MO2Qz6xRmoL3q01tRfYrJGAQ3zzH4vLjqwqQ_1WZUEw6Cubo34';
         reviewLink.textContent = 'Читать обзор "Мастер и Маргарита"';
+    } else if (bookId === '3') { // Три товарища
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://dtf.ru/read/1854825-mikro-obzor-tri-tovarisha-erih-mariya-remark-1936';
+        reviewLink.textContent = 'Читать обзор "Три товарища"';
+    } else if (bookId === '6') { // Американский психопат
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://dzen.ru/a/ZEAyk4R20kdF9yBx';
+        reviewLink.textContent = 'Читать обзор "Американский психопат"';
+    } else if (bookId === '7') { // Кристина
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://pikabu.ru/story/stiven_king_kristina_1983_6361536?ysclid=ma00rn90eo5996718';
+        reviewLink.textContent = 'Читать обзор "Кристина"';
+    } else if (bookId === '8') { // Игра престолов
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://author.today/post/441088';
+        reviewLink.textContent = 'Читать обзор "Игра престолов"';
+    } else if (bookId === '9') { // Атака титанов
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://irecommend.ru/content/ochen-krutaya-yaponskaya-postapokalipticheskaya-manga-napisannaya-i-illyustrirovannaya-khadz';
+        reviewLink.textContent = 'Читать обзор "Атака титанов"';
     } else {
         reviewContainer.style.display = 'none';
     }
