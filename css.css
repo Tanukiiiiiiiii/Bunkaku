@@ -391,12 +391,15 @@ footer {
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
+    color: #e0e0e0;
 }
 
 .rating-input select {
+    background-color: var(--gray-color);
     padding: 8px;
     border: 1px solid var(--gray-color);
     border-radius: 5px;
+    color: #e0e0e0;
 }
 /* Личный кабинет */
 .account-page {
