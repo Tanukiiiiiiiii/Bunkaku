@@ -28,6 +28,17 @@
         <a href="catalog.html" class="btn">Начать поиск</a>
     </section>
 
+    <!-- Новый блок: Популярные книги -->
+    <section class="popular-books">
+        <h2>Популярные книги</h2>
+        <div class="books-grid" id="featured-books">
+            <!-- Книги будут загружены через JS -->
+        </div>
+        <div class="center">
+            <a href="catalog.html" class="btn">Смотреть все книги</a>
+        </div>
+    </section>
+
     <section class="features">
         <div class="feature">
             <h3>Персонализированные рекомендации</h3>
@@ -53,5 +64,40 @@
 
 <script src="main.js"></script>
 <script src="auth.js"></script>
+<script src="books.js"></script>
+<script>
+    // Загрузка популярных книг на главную страницу
+    document.addEventListener('DOMContentLoaded', function() {
+        // Показываем 4 популярные книги
+        const popularBooks = mockBooks.filter(book => book.isPopular).slice(0, 4);
+        const container = document.getElementById('featured-books');
+
+        if (container) {
+            container.innerHTML = popularBooks.map(book => `
+                <div class="book-card" data-id="${book.id}">
+                    <div class="book-cover">
+                        <img src="${book.cover}" alt="${book.title}">
+                    </div>
+                    <div class="book-info">
+                        <h3>${book.title}</h3>
+                        <p class="author">${book.author}</p>
+                        <div class="rating">
+                            <div class="stars">${'★'.repeat(Math.round(book.rating))}${'☆'.repeat(5 - Math.round(book.rating))}</div>
+                            <span class="rating-value">${book.rating}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Добавляем обработчики клика на карточки книг
+            document.querySelectorAll('.book-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const bookId = this.getAttribute('data-id');
+                    window.location.href = `book.html?id=${bookId}`;
+                });
+            });
+        }
+    });
+</script>
 </body>
 </html>
