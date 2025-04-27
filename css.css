@@ -388,6 +388,38 @@ footer {
     line-height: 1.8;
 }
 
+.book-review-link {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--gray-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-card p {
+    margin-bottom: 0;
+    color: #e0e0e0;
+}
+
+.review-card .btn {
+    align-self: flex-start;
+    background-color: var(--secondary-color);
+    transition: all 0.3s;
+}
+
+.review-card .btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 45, 117, 0.3);
+}
+
+
 .reviews-list {
     margin-bottom: 40px;
     color: var(--grey-color);
