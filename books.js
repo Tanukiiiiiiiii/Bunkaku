@@ -213,7 +213,6 @@ function loadReviews(bookId) {
     }
 }
 
-// Добавление книги на полку пользователя
 function addBookToShelf(bookId, shelfType) {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (!user) {
@@ -225,16 +224,15 @@ function addBookToShelf(bookId, shelfType) {
     const book = mockBooks.find(b => b.id === parseInt(bookId));
     if (!book) return;
 
-    // Проверяем, есть ли уже книга на какой-либо полке
+    // Удаляем книгу с других полок
     for (const shelf in user.shelves) {
         const index = user.shelves[shelf].findIndex(b => b.id === book.id);
         if (index !== -1) {
-            // Удаляем книгу с текущей полки
             user.shelves[shelf].splice(index, 1);
         }
     }
 
-    // Добавляем книгу на выбранную полку
+    // Добавляем на выбранную полку
     user.shelves[shelfType].push({
         id: book.id,
         title: book.title,
@@ -243,22 +241,58 @@ function addBookToShelf(bookId, shelfType) {
         addedDate: new Date().toLocaleDateString()
     });
 
-    // Обновляем данные пользователя
     updateUserData(user);
-
     alert(`Книга "${book.title}" добавлена в "${getShelfName(shelfType)}"`);
 }
+function checkBookOnShelves(bookId) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) return;
 
-// Получение читаемого названия полки
-function getShelfName(shelfType) {
-    const names = {
-        reading: 'Читаю',
-        planned: 'В планах',
-        read: 'Прочитано'
-    };
-    return names[shelfType] || shelfType;
+    const statusElement = document.getElementById('shelf-status');
+    statusElement.textContent = '';
+
+    for (const shelf in user.shelves) {
+        const isOnShelf = user.shelves[shelf].some(b => b.id === parseInt(bookId));
+        if (isOnShelf) {
+            statusElement.textContent = `Книга в разделе: ${getShelfName(shelf)}`;
+            document.querySelector(`.shelf-btn[data-shelf="${shelf}"]`).classList.add('active-shelf');
+        } else {
+            document.querySelector(`.shelf-btn[data-shelf="${shelf}"]`).classList.remove('active-shelf');
+        }
+    }
 }
+function loadUserBooks(shelfType, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) return;
+
+    const books = user.shelves[shelfType] || [];
+
+    container.innerHTML = books.length > 0
+        ? books.map(book => `
+            <div class="book-card" data-id="${book.id}">
+                <div class="book-cover">
+                    <img src="${book.cover}" alt="${book.title}">
+                </div>
+                <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <p class="author">${book.author}</p>
+                    <div class="added-date">Добавлено: ${book.addedDate}</div>
+                </div>
+            </div>
+        `).join('')
+        : `<p class="empty-shelf">На этой полке пока нет книг</p>`;
+
+    // Добавляем обработчики клика
+    document.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const bookId = this.getAttribute('data-id');
+            window.location.href = `book.html?id=${bookId}`;
+        });
+    });
+}
 // Отправка отзыва
 function submitReview(bookId, text, rating) {
     const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -329,6 +363,40 @@ function loadUserBooks(shelfType, containerId) {
         card.addEventListener('click', function() {
             const bookId = this.getAttribute('data-id');
             window.location.href = `book.html?id=${bookId}`;
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookId = new URLSearchParams(window.location.search).get('id');
+
+        // Проверяем нахождение книги на полках
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user) checkBookOnShelves(bookId);
+
+        // Обработчики для кнопок
+        document.querySelectorAll('.shelf-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const shelfType = this.getAttribute('data-shelf');
+                addBookToShelf(bookId, shelfType);
+                checkBookOnShelves(bookId);
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Загрузка книг на полках
+        loadUserBooks('reading', 'reading-books');
+        loadUserBooks('planned', 'planned-books');
+        loadUserBooks('read', 'read-books');
+        updateShelvesCounters();
+
+        // Переключение между вкладками
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
         });
     });
 }

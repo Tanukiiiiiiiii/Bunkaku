@@ -3,8 +3,8 @@
     --primary-color: #ff2d75;
     --primary-dark: #d6245f;
     --secondary-color: #000000;
-    --light-color: #f8f8f8;
-    --gray-color: #e0e0e0;
+    --light-color: #1c1c1c;
+    --gray-color: #282828;
     --dark-gray: #333333;
 }
 
@@ -129,18 +129,18 @@ footer {
 }
 
 .feature {
-    background-color: white;
+    background-color: var(--gray-color);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    color: white;
 }
 
 .feature h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
 }
-
 /* Каталог */
 .catalog-header {
     display: flex;
@@ -209,7 +209,7 @@ footer {
 }
 
 .book-card {
-    background-color: white;
+    background-color: #2e2e2e;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
@@ -233,6 +233,7 @@ footer {
 
 .book-info {
     padding: 15px;
+    color: white;
 }
 
 .book-info h3 {
@@ -241,11 +242,12 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--primary-color);
 }
 
 .book-info .author {
     font-size: 14px;
-    color: var(--dark-gray);
+    color: white;
     margin-bottom: 10px;
 }
 
@@ -259,7 +261,6 @@ footer {
 .stars {
     color: gold;
 }
-
 /* Страница книги */
 .book-page {
     margin-top: 30px;
@@ -296,7 +297,7 @@ footer {
 
 .book-info .author {
     font-size: 18px;
-    color: var(--dark-gray);
+    color: #e0e0e0;
     margin-bottom: 20px;
 }
 
@@ -392,7 +393,6 @@ footer {
     border: 1px solid var(--gray-color);
     border-radius: 5px;
 }
-
 /* Личный кабинет */
 .account-page {
     margin-top: 30px;
@@ -443,7 +443,7 @@ footer {
 }
 
 .auth-form {
-    background-color: white;
+    background-color: var(--gray-color);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -483,7 +483,6 @@ footer {
 .auth-links a {
     color: var(--primary-color);
 }
-
 /* Адаптивность */
 @media (max-width: 768px) {
     header .container {
@@ -513,10 +512,10 @@ footer {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
-/* Добавим в style.css */
 .shelf-btn {
     background-color: var(--secondary-color);
     transition: all 0.3s;
+    margin-right: 10px;
 }
 
 .shelf-btn:hover {
@@ -526,163 +525,19 @@ footer {
 .active-shelf {
     background-color: var(--primary-color) !important;
     border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
 }
 
-.handpicked-section {
-    margin: 40px 0;
-    padding: 20px 0;
-    border-top: 1px solid var(--gray-color);
-}
-
-.handpicked-section h3 {
+#shelf-status {
     color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-/* Стили для форм авторизации */
-.auth-page {
-    background-color: #f8f8f8;
-    padding: 60px 0;
-}
-
-.auth-container {
-    max-width: 500px;
-    margin: 0 auto;
-    background: #000;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.2);
-    overflow: hidden;
-}
-
-.auth-header {
-    background: linear-gradient(135deg, #ff2d75, #d6245f);
-    color: white;
-    padding: 25px;
-    text-align: center;
-}
-
-.auth-header h2 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.auth-form {
-    padding: 30px;
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #ff2d75;
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    background: #111;
-    border: 2px solid #333;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-.form-control:focus {
-    border-color: #ff2d75;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.2);
-}
-
-.auth-btn {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #ff2d75, #d6245f);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.auth-btn:hover {
-    background: linear-gradient(135deg, #ff3d85, #e6346f);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
-}
-
-.auth-footer {
-    padding: 20px;
-    text-align: center;
-    background: #111;
-    color: #aaa;
-    font-size: 14px;
-}
-
-.auth-link {
-    color: #ff2d75;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.auth-link:hover {
-    color: white;
-}
-
-.divider {
-    display: flex;
-    align-items: center;
-    margin: 25px 0;
-    color: #666;
-    font-size: 14px;
-}
-
-.divider::before, .divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #333;
-}
-
-.divider::before {
-    margin-right: 15px;
-}
-
-.divider::after {
     margin-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.social-auth {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    transition: all 0.3s;
-}
-
-.social-btn:hover {
-    background: #ff2d75;
-    transform: translateY(-3px);
+.empty-shelf {
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    font-style: italic;
 }
