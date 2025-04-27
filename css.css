@@ -17,7 +17,7 @@
 
 body {
     background-color: var(--light-color);
-    color: var(--secondary-color);
+    color: #e0e0e0;
     line-height: 1.6;
 }
 
