@@ -321,6 +321,40 @@ footer {
     font-size: 14px;
 }
 
+
+.shelf-btn {
+    background-color: var(--light-color);
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+.active-shelf {
+    background-color: var(--primary-color) !important;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+}
+
+#shelf-status {
+    color: var(--primary-color);
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.empty-shelf {
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    font-style: italic;
+}
+.empty-message {
+    color: #e0e0e0;
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+    font-style: italic;
+}
+
 .actions {
     display: flex;
     gap: 10px;
@@ -632,41 +666,4 @@ footer {
     .auth-form {
         padding: 30px 20px;
     }
-}
-
-.shelf-btn {
-    background-color: var(--secondary-color);
-    transition: all 0.3s;
-    margin-right: 10px;
-}
-
-.shelf-btn:hover {
-    background-color: var(--primary-dark);
-}
-
-.active-shelf {
-    background-color: var(--primary-color) !important;
-    border: 2px solid var(--secondary-color);
-    box-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
-}
-
-#shelf-status {
-    color: var(--primary-color);
-    margin-left: 15px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.empty-shelf {
-    color: #666;
-    text-align: center;
-    padding: 40px 0;
-    font-style: italic;
-}
-.empty-message {
-    color: #e0e0e0;
-    text-align: center;
-    grid-column: 1 / -1;
-    padding: 40px 0;
-    font-style: italic;
 }
