@@ -47,43 +47,23 @@
         <!-- ... остальной код ... -->
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... предыдущий код ...
-
-            // Обновляем счетчики книг
-            updateShelvesCounters();
-        });
-
-        function updateShelvesCounters() {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            if (!user) return;
-
-            document.getElementById('reading-count').textContent = `(${user.shelves.reading.length})`;
-            document.getElementById('planned-count').textContent = `(${user.shelves.planned.length})`;
-            document.getElementById('read-count').textContent = `(${user.shelves.read.length})`;
-        }
-    </script>
-
-        <div class="tab-content active" id="reading">
-            <div class="books-grid" id="reading-books">
-                <!-- Книги из списка "Читаю" будут загружены через JS -->
-            </div>
-        </div>
-
-        <div class="tab-content" id="planned">
-            <div class="books-grid" id="planned-books">
-                <!-- Книги из списка "В планах" будут загружены через JS -->
-            </div>
-        </div>
-
-        <div class="tab-content" id="read">
-            <div class="books-grid" id="read-books">
-                <!-- Книги из списка "Прочитано" будут загружены через JS -->
-            </div>
+    <div class="tab-content active" id="reading">
+        <div class="books-grid" id="reading-books">
+            <!-- Книги из списка "Читаю" будут загружены через JS -->
         </div>
     </div>
-</main>
+
+    <div class="tab-content" id="planned">
+        <div class="books-grid" id="planned-books">
+            <!-- Книги из списка "В планах" будут загружены через JS -->
+        </div>
+    </div>
+
+    <div class="tab-content" id="read">
+        <div class="books-grid" id="read-books">
+            <!-- Книги из списка "Прочитано" будут загружены через JS -->
+        </div>
+    </div>
 
 
 <script src="main.js"></script>
@@ -119,6 +99,25 @@
         });
     });
 </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... предыдущий код ...
+
+            // Обновляем счетчики книг
+            updateShelvesCounters();
+        });
+
+        function updateShelvesCounters() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) return;
+
+            document.getElementById('reading-count').textContent = `(${user.shelves.reading.length})`;
+            document.getElementById('planned-count').textContent = `(${user.shelves.planned.length})`;
+            document.getElementById('read-count').textContent = `(${user.shelves.read.length})`;
+        }
+    </script>
+</main>
+
 <footer>
     <div class="container">
         <p>&copy; 2025 Bunkaku. Все права защищены.</p>
