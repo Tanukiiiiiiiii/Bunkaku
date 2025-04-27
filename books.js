@@ -165,6 +165,8 @@ function loadBooks(filter, containerId) {
 }
 
 // Загрузка данных книги
+// Загрузка данных книги
+// В функции loadBookData добавим проверку на наличие обзора
 function loadBookData(bookId) {
     const book = mockBooks.find(b => b.id === parseInt(bookId));
     if (!book) {
@@ -192,6 +194,22 @@ function loadBookData(bookId) {
 
     // Загрузка отзывов
     loadReviews(bookId);
+
+    // Показываем обзор, если он есть для книги
+    const reviewContainer = document.getElementById('book-review-container');
+    const reviewLink = document.getElementById('book-review-link');
+    
+    if (bookId === '1') { // 1984
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://blog.mann-ivanov-ferber.ru/2024/05/24/100-predskazanij-oruella-kotorye-sbylis-antiutopiya-1984/';
+        reviewLink.textContent = 'Читать обзор "100 предсказаний Оруэлла"';
+    } else if (bookId === '2') { // Мастер и Маргарита
+        reviewContainer.style.display = 'block';
+        reviewLink.href = 'https://polka.academy/articles/553?fbclid=IwAR0WMlDH2MO2Qz6xRmoL3q01tRfYrJGAQ3zzH4vLjqwqQ_1WZUEw6Cubo34';
+        reviewLink.textContent = 'Читать обзор "Мастер и Маргарита"';
+    } else {
+        reviewContainer.style.display = 'none';
+    }
 }
 
 // Загрузка отзывов
