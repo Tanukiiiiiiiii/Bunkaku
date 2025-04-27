@@ -387,3 +387,60 @@ function updateUserData(user) {
         localStorage.setItem('currentUser', JSON.stringify(user));
     }
 }
+// Функция поиска книг
+function searchBooks(query) {
+    if (!query || query.trim() === '') {
+        return mockBooks; // Возвращаем все книги, если запрос пустой
+    }
+
+    const lowerQuery = query.toLowerCase();
+    return mockBooks.filter(book =>
+        book.title.toLowerCase().includes(lowerQuery) ||
+        book.author.toLowerCase().includes(lowerQuery)
+    );
+}
+
+// Функция отображения результатов поиска
+function displaySearchResults(books, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = books.length > 0
+        ? books.map(book => `
+            <div class="book-card" data-id="${book.id}">
+                <div class="book-cover">
+                    <img src="${book.cover}" alt="${book.title}">
+                </div>
+                <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <p class="author">${book.author}</p>
+                    <div class="rating">
+                        <div class="stars">${'★'.repeat(Math.round(book.rating))}${'☆'.repeat(5 - Math.round(book.rating))}</div>
+                        <span class="rating-value">${book.rating}</span>
+                    </div>
+                </div>
+            </div>
+        `).join('')
+        : `<p class="empty-message">Ничего не найдено</p>`;
+
+    // Добавляем обработчики клика на карточки книг
+    document.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const bookId = this.getAttribute('data-id');
+            window.location.href = `book.html?id=${bookId}`;
+        });
+    });
+}
+
+// Функция для обработки поиска во всех вкладках
+function handleSearch(query) {
+    const results = searchBooks(query);
+
+    // Отображаем результаты во всех вкладках
+    displaySearchResults(results.filter(book => book.isPopular), 'popular-books');
+    displaySearchResults(results.filter(book => book.isNew), 'new-books');
+
+    // Показываем/скрываем кнопку сброса
+    const resetBtn = document.getElementById('reset-search');
+    resetBtn.style.display = query ? 'inline-block' : 'none';
+}
