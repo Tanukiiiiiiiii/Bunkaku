@@ -663,3 +663,10 @@ footer {
     padding: 40px 0;
     font-style: italic;
 }
+.empty-message {
+    color: #e0e0e0;
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+    font-style: italic;
+}
