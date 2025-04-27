@@ -376,12 +376,14 @@ footer {
 }
 
 .add-review textarea {
+    background-color: var(--light-color);
     width: 100%;
     padding: 15px;
     border: 1px solid var(--gray-color);
     border-radius: 8px;
     margin-bottom: 15px;
     min-height: 150px;
+    
 }
 
 .rating-input {
