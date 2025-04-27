@@ -141,6 +141,7 @@ footer {
     color: var(--primary-color);
     margin-bottom: 15px;
 }
+
 /* Каталог */
 .catalog-header {
     display: flex;
@@ -261,6 +262,7 @@ footer {
 .stars {
     color: gold;
 }
+
 /* Страница книги */
 .book-page {
     margin-top: 30px;
@@ -401,6 +403,7 @@ footer {
     border-radius: 5px;
     color: #e0e0e0;
 }
+
 /* Личный кабинет */
 .account-page {
     margin-top: 30px;
@@ -452,19 +455,25 @@ footer {
     min-height: calc(100vh - 200px);
 }
 
+.auth-container {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.5s ease-out;
+}
+
 .auth-form {
     background-color: var(--gray-color);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
+    border: 1px solid var(--primary-color);
 }
 
 .auth-form h2 {
     text-align: center;
     margin-bottom: 30px;
     color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(255, 45, 117, 0.3);
 }
 
 .form-group {
@@ -475,14 +484,94 @@ footer {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
+    color: var(--primary-color);
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--gray-color);
+    background-color: var(--dark-gray);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     font-size: 16px;
+    color: white;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 2px rgba(255, 45, 117, 0.3);
+}
+
+.auth-btn {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 45, 117, 0.3);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: var(--primary-color);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--primary-color);
+    opacity: 0.3;
+}
+
+.divider::before {
+    margin-right: 10px;
+}
+
+.divider::after {
+    margin-left: 10px;
+}
+
+.social-auth {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--dark-gray);
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 1px solid var(--primary-color);
+}
+
+.social-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
 }
 
 .auth-links {
@@ -492,7 +581,21 @@ footer {
 
 .auth-links a {
     color: var(--primary-color);
+    transition: all 0.3s;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
+
+.auth-links a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
     header .container {
@@ -521,7 +624,12 @@ footer {
     .books-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
+
+    .auth-form {
+        padding: 30px 20px;
+    }
 }
+
 .shelf-btn {
     background-color: var(--secondary-color);
     transition: all 0.3s;
